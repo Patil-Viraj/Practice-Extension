@@ -10,19 +10,20 @@ using namespace std;
 class Solution{   
 public:
     int getPairsCount(int arr[], int n, int sum) {
-        unordered_map<int , int>m;
+        
+        unordered_map<int , int> m;
+        int ans = 0;
         for(int i=0; i<n; i++){
+            int b = sum - arr[i];
+            if(m[b]){
+                ans +=m[b];
+            }
+            
             m[arr[i]]++;
         }
-        int twice_count = 0;
-        for(int i=0; i<n; i++){
-            twice_count += m[sum-arr[i]];
-            if(sum-arr[i] == arr[i]){
-                twice_count--;
-            }
-        }
-        return twice_count/2;
-    }
+        
+        return ans;
+    } 
 };
 
 //{ Driver Code Starts.
